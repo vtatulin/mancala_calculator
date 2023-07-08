@@ -1,6 +1,6 @@
 """mancala board class
 
-coordintes:
+coordinates:
 
         [  ] [12][11][10][ 9][ 8][ 7] [  ]
         [13]                          [ 6]
@@ -70,7 +70,7 @@ class Board():
 """
         return ret
 
-    def turn(self, pos):
+    def move(self, pos):
         self.captured = 0
         self.extra_mowe = False
         self.my_mowe = pos in MY_FIELD
@@ -141,13 +141,13 @@ class Board():
 if __name__ == '__main__':
     b = Board()
     print(b)
-    t = b.turn(2)
+    t = b.move(2)
     print(b)
     print(f'ended in {t}')
 
     print('test my capture:')
     b = Board()
-    b.turn(5)
+    b.move(5)
     print(b)
-    b.turn(0)
+    b.move(0)
     print(b)
