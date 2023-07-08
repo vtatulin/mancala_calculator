@@ -30,7 +30,7 @@ def main():
             t = random.choice(moves)
             print(f'op move: {t}')
 
-        b.turn(t)
+        b.move(t)
         print(b)
         if not b.extra_mowe:
             move = not move

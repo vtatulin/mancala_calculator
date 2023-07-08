@@ -4,7 +4,7 @@ import logging
 from board import Board
 
 logging.basicConfig(encoding='utf-8', level=logging.DEBUG)
-logger = logging.getLogger('dataloader', )
+logger = logging.getLogger('tests', )
 
 # logger.setLevel(level=logging.DEBUG)
 logger.setLevel(level=logging.INFO)
@@ -44,16 +44,16 @@ class TestStringMethods(unittest.TestCase):
 
     def test_my_first_mowe(self):
         b = Board()
-        b.turn(2)
+        b.move(2)
         logger.info(b)
         self.assertEqual(b.my_score, 1)
 
     def test_my_capture(self):
         b = Board()
         logger.info(b)
-        s = b.turn(5)
+        s = b.move(5)
         logger.info(b)
-        s = b.turn(1)
+        s = b.move(1)
         logger.info(b)
         self.assertTrue(b.my_score == 6)
         self.assertTrue(b.op_score == 0)
@@ -66,7 +66,7 @@ class TestStringMethods(unittest.TestCase):
         b.board[12] = 0
         b.board[11] = 1
         logger.info(b)
-        b.turn(11)
+        b.move(11)
         self.assertTrue(b.my_score == 0)
         self.assertTrue(b.op_score == 5)
 
@@ -76,7 +76,7 @@ class TestStringMethods(unittest.TestCase):
         b.board = get_empty_board(b)
         b.board[5] = 9
         logger.info(b)
-        b.turn(5)
+        b.move(5)
         logger.info(b)
         self.assertTrue(b.my_score == 3)  # 1 sowed + 2 captured
         self.assertTrue(b.op_score == 0)
@@ -86,7 +86,7 @@ class TestStringMethods(unittest.TestCase):
         b.board = get_empty_board(b)
         b.board[12] = 8
         logger.info(b)
-        b.turn(12)
+        b.move(12)
         logger.info(b)
         self.assertTrue(b.my_score == 0)
         self.assertTrue(b.op_score == 3)  # 1 sowed + 2 captured
@@ -100,7 +100,7 @@ class TestStringMethods(unittest.TestCase):
         b.board[4] = 1
         b.board[7] = 1
         logger.info(b)
-        b.turn(4)
+        b.move(4)
         self.assertEqual(2, b.my_score)
 
     def test_op_capture(self):
@@ -111,7 +111,7 @@ class TestStringMethods(unittest.TestCase):
         b.board = get_empty_board(b)
         b.board[0] = 10
         b.board[11] = 1
-        b.turn(11)
+        b.move(11)
         self.assertEqual(11, b.op_score)
 
 
@@ -122,14 +122,14 @@ class TestStringMethods(unittest.TestCase):
         b = Board()
         b.board = get_empty_board(b)
         b.board[5] = 1
-        b.turn(5)
+        b.move(5)
         self.assertEqual(True, b.extra_mowe)
 
     def test_ops_extra_mowe(self):
         b = Board()
         b.board = get_empty_board(b)
         b.board[11] = 2
-        b.turn(11)
+        b.move(11)
         self.assertEqual(True, b.extra_mowe)
 
     def test_end_game(self):
@@ -137,13 +137,13 @@ class TestStringMethods(unittest.TestCase):
         b.board = get_empty_board(b)
         b.board[13] = 47
         b.board[12] = 1
-        b.turn(12)
+        b.move(12)
         self.assertEqual(b.game_end, True)
 
     def test_not_end(self):
         b = Board()
         self.assertEqual(b.game_end, False)
-        b.turn(5)
+        b.move(5)
         self.assertEqual(b.game_end, False)
 
 
